@@ -58,3 +58,25 @@ def get_db() -> mysql.connector.connection.MySQLConnection:
     db = mysql.connector.connect(user=u, password=p,
                                  host=h, database=n)
     return db
+
+
+def main():
+    """Read and filter data"""
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM users;")
+    s = []
+    for i in cursor.description:
+        s.append(i[0])
+    log = get_logger()
+    for j in cursor:
+        d = ''
+        d = '; '.join([f"{y}={(x)}" for x, y in zip(j, s)])
+        logger.info(d)
+    cursor.close()
+    db.close()
+
+
+if __name__ == "__main__":
+    """main function"""
+    main()
