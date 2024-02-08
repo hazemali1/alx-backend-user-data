@@ -49,7 +49,7 @@ def get_logger() -> logging.Logger:
     return log
 
 
-def get_db():
+def get_db() -> mysql.connector.connection.MySQLConnection:
     """return conection to the db"""
     u = os.getenv("PERSONAL_DATA_DB_USERNAME", "root")
     p = os.getenv("PERSONAL_DATA_DB_PASSWORD", "")
