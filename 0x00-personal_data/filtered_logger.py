@@ -14,13 +14,14 @@ class RedactingFormatter(logging.Formatter):
     SEPARATOR = ";"
 
     def __init__(self, fields):
+        """initial constructor for RedactingFormatter"""
         super(RedactingFormatter, self).__init__(self.FORMAT)
         self.fields = fields
 
     def format(self, record: logging.LogRecord) -> str:
         """ Return a string representation of the record"""
-        return(filter_datum(self.fields, self.REDACTION, super().format(record),
-                            self.SEPARATOR))
+        return(filter_datum(self.fields, self.REDACTION,
+                            super().format(record), self.SEPARATOR))
 
 
 def filter_datum(fields: List[str], redaction: str,
