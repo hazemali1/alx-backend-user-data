@@ -7,10 +7,10 @@ import logging
 
 def filter_datum(fields: List[str], redaction: str,
                  message: str, separator: str) -> str:
-    """ Returns a log message obfuscated """
-    for f in fields:
-        message = re.sub(f'{f}=.*?{separator}',
-                         f'{f}={redaction}{separator}', message)
+    """filter datum fields"""
+    for x in fields:
+        message = re.sub(f'{x}=(.*?){separator}',
+                         f'{x}={redaction}{separator}', message)
     return message
 
 
@@ -23,7 +23,6 @@ class RedactingFormatter(logging.Formatter):
     SEPARATOR = ";"
 
     def __init__(self, fields: List[str]):
-        """initial constructor for RedactingFormatter"""
         super(RedactingFormatter, self).__init__(self.FORMAT)
         self.fields = fields
 
