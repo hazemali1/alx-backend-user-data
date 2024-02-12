@@ -52,7 +52,7 @@ def before_request():
                       '/api/v1/forbidden/']
     if auth is None:
         return
-    if auth.require_auth(request.path, excluded_paths) == False:
+    if auth.require_auth(request.path, excluded_paths) is False:
         return
     if auth.authorization_header(request) is None:
         abort(401)
