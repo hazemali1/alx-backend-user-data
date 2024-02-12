@@ -27,4 +27,4 @@ class BasicAuth(Auth):
             base64.b64decode(base64_authorization_header)
         except ValueError:
             return None
-        return base64.b64decode(base64_authorization_header)
+        return base64.b64decode(base64_authorization_header).decode('utf-8')
