@@ -60,4 +60,15 @@ class BasicAuth(Auth):
 
     def current_user(self, request=None) -> TypeVar('User'):
         """curren user overloads"""
-        return "hehe"
+        a_h = authorization_header(request)
+        if a_h:
+            e_b_a_h = extract_base64_authorization_header(a_h)
+            if e_b_a_h:
+                d_b_a_h = decode_base64_authorization_header(e_b_a_h)
+                if d_b_a_h:
+                    e_u_c = extract_user_credentials(d_b_a_h)
+                    if e_u_c:
+                        t = e_u_c
+                        u_o_f_c = user_object_from_credentials(t[0], t[1])
+                        return u_o_f_c
+        return None
