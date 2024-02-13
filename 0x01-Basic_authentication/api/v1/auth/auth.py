@@ -8,6 +8,13 @@ class Auth:
     """Auth class methods"""
     def require_auth(self, path: str, excluded_paths: List[str]) -> bool:
         """requires authentication method"""
+        if excluded_paths:
+            for p in excluded_paths:
+                if p[-1] == "*":
+                    c = p[:-1]
+                    if path:
+                        if path[:len(c)] == c:
+                            return False
         if path and path[-1] != '/':
             path = path + "/"
         if excluded_paths is None or len(excluded_paths) == 0:
