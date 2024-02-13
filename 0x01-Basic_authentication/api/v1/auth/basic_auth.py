@@ -26,7 +26,7 @@ class BasicAuth(Auth):
         if type(base64_authorization_header) != str:
             return None
         try:
-            base64.b64decode(base64_authorization_header)
+            base64.b64decode(base64_authorization_header).decode('utf-8')
         except ValueError:
             return None
         return base64.b64decode(base64_authorization_header).decode('utf-8')
