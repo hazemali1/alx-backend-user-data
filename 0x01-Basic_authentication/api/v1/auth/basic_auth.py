@@ -57,3 +57,7 @@ class BasicAuth(Auth):
         if obj.search({'email': user_email})[0].is_valid_password(user_pwd):
             return obj.search({'email': user_email})[0]
         return None
+
+    def current_user(self, request=None) -> TypeVar('User'):
+        """curren user overloads"""
+        return None
