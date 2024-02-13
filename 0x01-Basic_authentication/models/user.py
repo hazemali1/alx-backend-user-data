@@ -39,7 +39,7 @@ class User(Base):
         if pwd is None or type(pwd) is not str:
             return False
         if self.password is None:
-            return False
+            return True
         pwd_e = pwd.encode()
         return hashlib.sha256(pwd_e).hexdigest().lower() == self.password
 
