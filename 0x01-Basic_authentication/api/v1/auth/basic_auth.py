@@ -60,4 +60,4 @@ class BasicAuth(Auth):
 
     def current_user(self, request=None) -> TypeVar('User'):
         """curren user overloads"""
-        return None
+        return "hehe"
