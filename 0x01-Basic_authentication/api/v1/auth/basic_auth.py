@@ -52,4 +52,4 @@ class BasicAuth(Auth):
         if user_pwd is None or type(user_pwd) != str:
             return None
         obj = User()
-        print(obj.all())
+        print(obj.search(user_email))
