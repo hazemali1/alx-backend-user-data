@@ -53,4 +53,4 @@ class BasicAuth(Auth):
             return None
         obj = User()
         if obj.search({'email': user_email}):
-            print(obj.search({'email': user_email}).display_name())
+            print(obj.search({'email': user_email})[0].display_name())
