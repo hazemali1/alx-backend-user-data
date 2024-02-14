@@ -2,6 +2,7 @@
 """Auth class's models"""
 from flask import request
 from typing import List, TypeVar
+import os
 
 
 class Auth:
