@@ -8,7 +8,7 @@ import os
 
 
 @app_views.route('/auth_session/login', methods=['POST'], strict_slashes=False)
-def status() -> str:
+def auth_session_login() -> str:
     """ POST /api/v1/auth_session/login
     Return:
       - the auth_session of the API
