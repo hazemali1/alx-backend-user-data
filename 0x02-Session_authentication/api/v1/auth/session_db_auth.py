@@ -27,15 +27,14 @@ class SessionDBAuth(SessionExpAuth):
         if len(li) == 0:
             return None
         s = li[0]
-        print(s.to_json().get('created_at'))
-        c_a = s.get('created_at')
+        c_a = s.to_json().get('created_at')
         if c_a is None:
             return None
         c_a = datetime.fromisoformat(c_a)
         t = (datetime.now() - c_a).total_seconds()
         if int(t) > self.session_duration:
             return None
-        return s.get('user_id')
+        return s.to_json().get('user_id')
 
     def destroy_session(self, request=None):
         """destroy session from db"""
