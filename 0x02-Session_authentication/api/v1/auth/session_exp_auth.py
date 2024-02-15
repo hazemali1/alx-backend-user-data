@@ -31,6 +31,16 @@ class SessionExpAuth(SessionAuth):
 
     def user_id_for_session_id(self, session_id=None):
         """user id for session id"""
-
+        if session_id is None:
+            return None
+        u_i_b_s_i = self.user_id_by_session_id.get(session_id)
+        if u_i_b_s_i is None:
+            return None
+        c_a = u_i_b_s_i.get('created_at')
+        if c_a is None:
+            return None
+        t = c_a + timedelta(seconds=self.session_duration)
+        if t < datetime.now():
+            return None
         if self.session_duration <= 0:
             return u_i_b_s_i.get('user_id')
