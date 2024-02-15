@@ -28,6 +28,8 @@ class SessionDBAuth(SessionExpAuth):
             return None
         s = li[0]
         c_a = s.get('created_at')
+        if c_a is None:
+            return None
         c_a = datetime.fromisoformat(c_a)
         t = (datetime.now() - c_a).total_seconds()
         if int(t) > self.session_duration:
