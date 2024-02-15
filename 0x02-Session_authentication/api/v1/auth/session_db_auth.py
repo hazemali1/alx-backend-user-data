@@ -27,7 +27,7 @@ class SessionDBAuth(SessionExpAuth):
         if len(li) == 0:
             return None
         s = li[0]
-        print(s)
+        print(s.items())
         c_a = s.get('created_at')
         if c_a is None:
             return None
