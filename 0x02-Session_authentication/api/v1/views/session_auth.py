@@ -28,7 +28,7 @@ def auth_session_login():
     user = obj.search({'email': email})[0]
     if user.is_valid_password(password) is False:
         return jsonify({ "error": "wrong password" }), 401
-    session_id = auth.create_session(user.get('id'))
+    session_id = auth.create_session(user['id'])
     js = jsonify(user.to_json())
     session_name = os.environ.get('SESSION_NAME')
     js.set_cookie(session_name, session_id)
