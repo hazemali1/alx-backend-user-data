@@ -2,7 +2,7 @@
 """Auth class's models"""
 from api.v1.auth.session_auth import SessionAuth
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 class SessionExpAuth(SessionAuth):
