@@ -20,7 +20,6 @@ class SessionDBAuth(SessionExpAuth):
 
     def user_id_for_session_id(self, session_id=None):
         """user id for session id"""
-        print("================================")
         if session_id is None:
             return None
         obj = UserSession()
@@ -28,6 +27,7 @@ class SessionDBAuth(SessionExpAuth):
         if len(li) == 0:
             return None
         s = li[0]
+        print(s)
         c_a = s.get('created_at')
         if c_a is None:
             return None
