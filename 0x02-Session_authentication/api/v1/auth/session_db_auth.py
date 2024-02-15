@@ -26,6 +26,10 @@ class SessionDBAuth(SessionExpAuth):
         if len(li) == 0:
             return None
         s = li[0]
+        c_a = s.get('created_at')
+        t = (datetime.now() - c_a).total_seconds()
+        if int(t) > self.session_duration:
+            return None
         return s.get('user_id')
 
     def destroy_session(self, request=None):
