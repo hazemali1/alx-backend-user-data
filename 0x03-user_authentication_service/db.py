@@ -1,27 +1,30 @@
 #!/usr/bin/env python3
-""" Database for ORM """
+"""DB module
+"""
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.exc import InvalidRequestError
-from sqlalchemy.orm.exc import NoResultFound
-from typing import TypeVar
+from sqlalchemy.orm.session import Session
+
 from user import Base, User
 
 
 class DB:
-    """ DB Class for Object Reational Mapping """
+    """DB class
+    """
 
-    def __init__(self):
-        """ Constructor Method """
-        self._engine = create_engine("sqlite:///a.db", echo=False)
+    def __init__(self) -> None:
+        """Initialize a new DB instance
+        """
+        self._engine = create_engine("sqlite:///a.db", echo=True)
         Base.metadata.drop_all(self._engine)
         Base.metadata.create_all(self._engine)
         self.__session = None
 
     @property
-    def _session(self):
-        """ Session Getter Method """
+    def _session(self) -> Session:
+        """Memoized session object
+        """
         if self.__session is None:
             DBSession = sessionmaker(bind=self._engine)
             self.__session = DBSession()
