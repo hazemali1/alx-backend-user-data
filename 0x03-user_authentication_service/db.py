@@ -51,3 +51,14 @@ class DB:
                 raise NoResultFound()
         except AttributeError:
             raise InvalidRequestError()
+
+    def update_user(self, user_id: int, **kwargs) -> None:
+        """update user method"""
+        user = self.find_user_by(id=user_id)
+        try:
+            for k, v in kwargs.items():
+                user.k = v
+                self._session.commit()
+                return None
+        except Exception:
+            raise ValueError
