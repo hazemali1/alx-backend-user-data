@@ -65,6 +65,7 @@ class Auth:
         try:
             user = self._db.find_user_by(id=user_id)
             user.session_id = None
+            self._db._session.commit()
             return None
         except NoResultFound:
             return None
@@ -75,6 +76,7 @@ class Auth:
             user = self._db.find_user_by(email=email)
             token = _generate_uuid()
             user.reset_token = token
+            self._db._session.commit()
             return token
         except NoResultFound:
             raise ValueError
