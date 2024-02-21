@@ -39,7 +39,7 @@ class DB:
         self._session.commit()
         return obj
 
-    def find_user_by(self, **kwargs):
+    def find_user_by(self, **kwargs) -> User:
         """find user by key and value"""
         try:
             for key, v in kwargs.items():
