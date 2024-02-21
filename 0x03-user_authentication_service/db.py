@@ -55,10 +55,9 @@ class DB:
     def update_user(self, user_id: int, **kwargs) -> None:
         """update user method"""
         user = self.find_user_by(id=user_id)
-        try:
-            for k, v in kwargs.items():
-                user.k = v
-                self._session.commit()
-                return None
-        except Exception:
-            raise ValueError
+        for k, v in kwargs.items():
+            if k not in user.__table__.columns.keys():
+                raise ValueError
+            user.k = v
+            self._session.commit()
+            return None
